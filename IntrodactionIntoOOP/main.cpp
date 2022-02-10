@@ -2,18 +2,16 @@
 
 int main() {
   Warrior user_0001;
-  user_0001.name = "Garrosh Hellscream";
-  user_0001.gender = "male";
-  user_0001.power = 10.0;
-  user_0001.health = 100.0;
-  user_0001.armor = 30.0;
 
-  Axe user_0001_weapon;
-  user_0001_weapon.name = "Gorehowl";
-  user_0001_weapon.damage = 30.0;
-  user_0001_weapon.strenght = 100.0;
+  Axe user_0002_weapon("Knife", 5.0, 30);
+  Warrior user_0002("Grom Hellscream", "male", 40.0, 100.0, user_0002_weapon, 30.0);
 
-  print_character_info(&user_0001, &user_0001_weapon);
+  Warrior user_0003(user_0002);
+
+  // вызов метода для объекта класса
+  user_0001.print_character_info();
+  user_0002.print_character_info();
+  user_0003.print_character_info();
 
   system("pause");
   return 0;
