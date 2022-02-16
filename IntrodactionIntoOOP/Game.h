@@ -2,6 +2,10 @@
 
 #include <iostream>
 #include <string>
+#include <time.h>
+
+#define MAX_HEALTH 100
+#define CRIT -1
 
 /******************************** WEAPON'S CLASSES **********************************/
 
@@ -73,56 +77,71 @@ protected:
 public:
   // конструкторы
   Character();
-  Character(std::string _name, std::string  _gender, double _power, double _health);
+  Character(std::string _name, std::string  _gender, double _power);
   Character(const Character& w);
 
   // методы
+
+  void restoreHealth() { };
+  bool crit() const { };
+  virtual void attack(Character &ch) = 0;
+  virtual bool attacted(double _damage) = 0;
   void print();
 };
 
-class Human : Character {
+class Human : public Character {
   Gun weapon;
   int technics;
 
 public:
   Human();
   Human(std::string _name, std::string  _gender, double _power,
-    double _health, std::string _nameW, double _damage, int _cartridges,
+    std::string _nameW, double _damage, int _cartridges,
     double _technics);
   Human(std::string _name, std::string  _gender, double _power,
-    double _health, Gun _weapon, double _technics);
+    Gun _weapon, double _technics);
   Human(const Human &w);
+
+  void attack(Character &ch) {
+    std::cout << std::endl << name << " ATTACK!" << std::endl;
+
+  };
+
+  bool attacted(double _damage) {
+    std::cout << std::endl << name << " WAS ATTACKED!" << std::endl;
+    return false;
+  };
 
   void print();
 };
 
-class Archer : Character {
+class Archer : public Character {
   Bow weapon;
   int dexterity;
 
 public:
   Archer();
   Archer(std::string _name, std::string  _gender, double _power,
-    double _health, std::string _nameW, double _damage, int _arrows, double _extraDamage,
+    std::string _nameW, double _damage, int _arrows, double _extraDamage,
     int _time, double _dexterity);
   Archer(std::string _name, std::string  _gender, double _power,
-    double _health, Bow _weapon, double _dexterity);
+    Bow _weapon, double _dexterity);
   Archer(const Archer &w);
 
   void print();
 };
 
-class Warrior : Character {
+class Warrior : public Character {
   Axe weapon;
   double armor;
 
 public:
   Warrior();
   Warrior(std::string _name, std::string  _gender, double _power,
-  double _health, std::string _nameW, double _damage, int _strenght,
+  std::string _nameW, double _damage, int _strenght,
   double _armor);
   Warrior(std::string _name, std::string  _gender, double _power,
-    double _health, Axe _weapon, double _armor);
+    Axe _weapon, double _armor);
   Warrior(const Warrior &w);
 
   void print();

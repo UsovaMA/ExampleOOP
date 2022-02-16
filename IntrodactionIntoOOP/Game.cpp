@@ -100,15 +100,15 @@ Character::Character() {
   name = "Bob";
   gender = "male";
   power = 1.0;
-  health = 100.0;
+  health = MAX_HEALTH;
 }
 
 // конструктор инициализации
-Character::Character(std::string _name, std::string  _gender, double _power, double _health) {
+Character::Character(std::string _name, std::string  _gender, double _power) {
   name = _name;
   gender = _gender;
   power = _power;
-  health = _health;
+  health = MAX_HEALTH;
 }
 
 // конструктор копирования
@@ -116,7 +116,7 @@ Character::Character(const Character& w) {
   name = w.name;
   gender = w.gender;
   power = w.power;
-  health = w.health;
+  health = MAX_HEALTH;
 }
 
 void Character::print() {
@@ -132,13 +132,13 @@ Human::Human() {
   name = "James Bond";
   gender = "male";
   power = 10.0;
-  health = 100.0;
+  health = MAX_HEALTH;
   technics = 30.0;
 }
 
 Human::Human(std::string _name, std::string  _gender, double _power,
-  double _health, std::string _nameW, double _damage, int _cartridges,
-  double _technics) : Character(_name, _gender, _power, _health) {
+  std::string _nameW, double _damage, int _cartridges,
+  double _technics) : Character(_name, _gender, _power) {
   weapon.name = _nameW;
   weapon.damage = _damage;
   weapon.cartridges = _cartridges;
@@ -146,13 +146,13 @@ Human::Human(std::string _name, std::string  _gender, double _power,
 }
 
 Human::Human(std::string _name, std::string  _gender, double _power,
-  double _health, Gun _weapon, double _technics)
-  : Character(_name, _gender, _power, _health) {
+  Gun _weapon, double _technics)
+  : Character(_name, _gender, _power) {
   weapon = _weapon;
   technics = _technics;
 }
 
-Human::Human(const Human &w) : Character(w.name, w.gender, w.power, w.health) {
+Human::Human(const Human &w) : Character(w.name, w.gender, w.power) {
   weapon = w.weapon;
   technics = w.technics;
 }
@@ -169,13 +169,13 @@ Archer::Archer() {
   name = "Legolas";
   gender = "male";
   power = 0.0;
-  health = 100.0;
+  health = MAX_HEALTH;
   dexterity = 15.0;
 }
 
 Archer::Archer(std::string _name, std::string  _gender, double _power,
-  double _health, std::string _nameW, double _damage, int _arrows, double _extraDamage,
-  int _time, double _dexterity) : Character(_name, _gender, _power, _health) {
+  std::string _nameW, double _damage, int _arrows, double _extraDamage,
+  int _time, double _dexterity) : Character(_name, _gender, _power) {
 
   weapon.name = _nameW;
   weapon.damage = _damage;
@@ -187,13 +187,13 @@ Archer::Archer(std::string _name, std::string  _gender, double _power,
 }
 
 Archer::Archer(std::string _name, std::string  _gender, double _power,
-  double _health, Bow _weapon, double _dexterity)
-  : Character(_name, _gender, _power, _health) {
+  Bow _weapon, double _dexterity)
+  : Character(_name, _gender, _power) {
   weapon = _weapon;
   dexterity = _dexterity;
 }
 
-Archer::Archer(const Archer &w) : Character(w.name, w.gender, w.power, w.health) {
+Archer::Archer(const Archer &w) : Character(w.name, w.gender, w.power) {
   weapon = w.weapon;
   dexterity = w.dexterity;
 }
@@ -210,14 +210,14 @@ Warrior::Warrior() {
   name = "Garrosh Hellscream";
   gender = "male";
   power = 10.0;
-  health = 100.0;
+  health = MAX_HEALTH;
   armor = 30.0;
 }
 
 // конструктор инициализации (расширенный)
 Warrior::Warrior(std::string _name, std::string  _gender, double _power,
-  double _health, std::string _nameW, double _damage, int _strenght,
-  double _armor) : Character(_name, _gender, _power, _health) {
+  std::string _nameW, double _damage, int _strenght,
+  double _armor) : Character(_name, _gender, _power) {
 
   weapon.name = _nameW;
   weapon.damage = _damage;
@@ -227,13 +227,13 @@ Warrior::Warrior(std::string _name, std::string  _gender, double _power,
 }
 
 Warrior::Warrior(std::string _name, std::string  _gender, double _power,
-  double _health, Axe _weapon, double _armor)
-  : Character(_name, _gender, _power, _health) {
+  Axe _weapon, double _armor)
+  : Character(_name, _gender, _power) {
   weapon = _weapon;
   armor = _armor;
 }
 
-Warrior::Warrior(const Warrior &w) : Character(w.name, w.gender, w.power, w.health) {
+Warrior::Warrior(const Warrior &w) : Character(w.name, w.gender, w.power) {
   weapon = w.weapon;
   armor = w.armor;
 }
