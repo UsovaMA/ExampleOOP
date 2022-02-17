@@ -82,10 +82,21 @@ public:
 
   // методы
 
-  void restoreHealth() { };
-  bool crit() const { };
-  virtual void attack(Character &ch) = 0;
+  void restoreHealth() {
+    //health = MAX_HEALTH;
+    //health = (30 + rand() % 71);
+    //health += health * (30 + rand() % 71) * 0.01;
+    //health = 40 + 60 * (30%-100%)
+    health += (MAX_HEALTH - health) * (30 + rand() % 71) * 0.01;
+  };
+
+  bool crit() const { 
+    return rand() % 100 < 3;  // теория вероятности
+  };
+
+  virtual bool attack(Character &ch) = 0;
   virtual bool attacted(double _damage) = 0;
+
   void print();
 };
 
@@ -102,14 +113,37 @@ public:
     Gun _weapon, double _technics);
   Human(const Human &w);
 
-  void attack(Character &ch) {
-    std::cout << std::endl << name << " ATTACK!" << std::endl;
+  bool attack(Character &ch) {
+    bool isDead;
 
+    if (weapon.cartridges == 0) {
+      isDead = ch.attacted(power);
+    } else {
+        weapon.cartridges--;
+        if (crit()) {
+          isDead = ch.attacted(MAX_HEALTH);
+        } else {
+          double damage_ = weapon.damage * (1 + technics * 0.01);
+          isDead = ch.attacted(damage_);
+        }
+    }
+    
+    if (isDead) technics += 20;
+
+    return isDead;
   };
 
   bool attacted(double _damage) {
-    std::cout << std::endl << name << " WAS ATTACKED!" << std::endl;
-    return false;
+    bool died;
+    if (health <= _damage) {
+      health = 0.0;
+      died = true;
+    }
+    else {
+      health -= _damage;
+      died = false;
+    }
+    return died;
   };
 
   void print();

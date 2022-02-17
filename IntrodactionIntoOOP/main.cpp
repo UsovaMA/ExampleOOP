@@ -35,13 +35,9 @@ int main() {
   user_0002.attack(user_0001);
   user_0001.attack(user_0002);
 
-  /*
-  std::cout << std::endl << "USER 1" << std::endl;
-  user_0001.print();
-  std::cout << std::endl << "USER 2" << std::endl;
-  user_0002.print();
-  */
-  user_0001.attack(user_0002);
+  bool dead = user_0001.attack(user_0002);
+  if (dead) std::cout << "USER 2 IS DEAD!!!" << std::endl;
+
 
   system("pause");
   return 0;
