@@ -125,10 +125,63 @@ public:
 };
 
 int main() {
-    Octal num1(4);
-    num1 = 1011;
-    Octal num2(3);
-    num2 = 777;
-    Octal num3(1);
-    (num1 - num2).print();
+    int option;
+    int x;
+    std::cout << "Размер первого числа: ";
+    std::cin >> x;
+    Octal num1(x);
+    std::cout << "Размер второго числа: ";
+    std::cin >> x;
+    Octal num2(x);
+    while (true) {
+        system("cls");
+        std::cout << "num1 = "; num1.print();
+        std::cout << "num2 = "; num2.print();
+        std::cout << "Выбор опции:\n1 - Присваивание\n2 - Сложение\n3 - Вычитание\n4 - Сравнение\n5 - Выход\nОпция: ";
+        std::cin >> option;
+        switch (option) {
+        case 1:
+            int num, x;
+            std::cout << "1 - первое число, 2 - второе число: ";
+            std::cin >> num;
+            std::cout << "Значение: ";
+            std::cin >> x;
+            switch (num) {
+            case 1:
+                num1 = x;
+                break;
+            case 2:
+                num2 = x;
+                break;
+            }
+            break;
+        case 2:
+            (num1 + num2).print();
+            system("pause");
+            break;
+        case 3:
+            (num1 - num2).print();
+            system("pause");
+            break;
+        case 4:
+            char sign;
+            std::cout << "Знак (>, <, =): ";
+            std::cin >> sign;
+            switch (sign) {
+            case '>':
+                std::cout << ((num1 > num2) ? "True" : "False") << std::endl;
+                break;
+            case '<':
+                std::cout << ((num1 < num2) ? "True" : "False") << std::endl;
+                break;
+            case '=':
+                std::cout << ((num1 == num2) ? "True" : "False") << std::endl;
+                break;
+            }
+            system("pause");
+            break;
+        case 5:
+            exit(0);
+        }
+    }
 }
