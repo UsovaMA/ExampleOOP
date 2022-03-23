@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <fstream>
 
 /*
  * ”казани€ по настройке проекта (cоздание статической библиотеки + подхват еЄ приложением):
@@ -19,7 +20,7 @@ class Product {
   int count;
 public:
   // конструкторы
-  Product();
+  Product() {};
   Product(std::string _code, std::string _name, int _price, int _discount, int _count);
 
   // методы
@@ -29,15 +30,48 @@ public:
   friend std::ostream& operator<< (std::ostream& out, const Product& prod);
 
   friend class Busket;
+  friend class Assortment;
 };
 
 class Assortment {
+public:
   Product* all;
   int count;
 
-public:
   // конструктор - по умолчанию читаем из файла
-  Assortment();
+  Assortment() {
+    std::string line;
+    std::ifstream in("..\\source\\assortment.txt"); // окрываем файл дл€ чтени€
+    if (in.is_open()) {
+      getline(in, line);
+      count = atoi(line.c_str());
+      all = new Product[count];
+      int i = 0;
+      while (getline(in, line)) {
+        all[i].code = getWord(&line);
+        all[i].name = getWord(&line);
+        all[i].price = atoi(getWord(&line).c_str());
+        all[i].discount = 20 + rand() % 31;
+        all[i].count = atoi(getWord(&line).c_str());
+        i++;
+      }
+    }
+
+    in.close();     // закрываем файл
+  };
+
+  std::string getProductName(int i) {
+    return all[i].name;
+  }
+
+private:
+  std::string getWord(std::string* line) {
+    std::string delimiter = " : ";
+    int pos = line->find(delimiter);
+    std::string token = line->substr(0, pos);
+    line->erase(0, pos + delimiter.length());
+    return token;
+  }
 };
 
 typedef Product* ProductLink;
