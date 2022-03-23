@@ -24,6 +24,14 @@ namespace CppCLRWinformsProjekt {
 			//
 			//TODO: Konstruktorcode hier hinzufügen.
 			//
+
+			int i = 0;
+			while (i < assortment.count) {
+				std::string name = assortment.getProductName(i);
+				String^ str = gcnew String(name.c_str());
+				this->comboBox1->Items->Add(str);
+				i++;
+			}
 		}
 
 	protected:
@@ -51,7 +59,6 @@ namespace CppCLRWinformsProjekt {
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::ComboBox^ comboBox1;
 	private: System::Windows::Forms::Button^ button5;
-
 	private:
 		/// <summary>
 		/// Erforderliche Designervariable.
@@ -208,18 +215,12 @@ namespace CppCLRWinformsProjekt {
 			// comboBox1
 			// 
 			this->comboBox1->FormattingEnabled = true;
-			
 			this->comboBox1->Location = System::Drawing::Point(13, 97);
 			this->comboBox1->Margin = System::Windows::Forms::Padding(4);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(335, 24);
 			this->comboBox1->TabIndex = 2;
-			
-			for (int i = 0; i < assortment.count; i++) {
-				std::string name = assortment.getProductName(i);
-				String^ str = gcnew String(name.c_str());
-				this->comboBox1->Items->Add(str);
-			}
+
 			// 
 			// button5
 			// 
@@ -251,7 +252,6 @@ namespace CppCLRWinformsProjekt {
 			this->groupBox2->ResumeLayout(false);
 			this->groupBox2->PerformLayout();
 			this->ResumeLayout(false);
-
 		}
 #pragma endregion
 

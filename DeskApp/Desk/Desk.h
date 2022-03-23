@@ -62,7 +62,11 @@ public:
 
   std::string getProductName(int i) {
     return all[i].name;
-  }
+  };
+
+  int getCount() {
+    return count;
+  };
 
 private:
   std::string getWord(std::string* line) {
