@@ -15,3 +15,9 @@
 3. разойтись и реализовать каждый свою часть.
    - 1 часть: интерфейс,
    - 2 часть: реализация классов.
+   
+Полезные ссылки:
+- шаблон CLR-проекта:
+https://marketplace.visualstudio.com/items?itemName=RichardKaiser.CppWinformsVS2019VSIX001&ssr=false#overview
+
+
