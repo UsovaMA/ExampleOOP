@@ -1,0 +1,25 @@
+Для запоминания:
+
+ПРЕОБРАЗОВАНИЯ ТИПОВ ДАННЫХ
+
+1. Конвертирование std::string to System::String
+- gcnew System::String(str.c_str())
+- L"Some text"
+- L"\n"
+
+2. Конвертирование int to System::String
+- val.ToString()
+
+3. Конвертирование Object to System::String
+- obj->ToString()
+
+4. Конвертирование System::String to int
+- int::Parse(System::String str)
+
+5. Конвертирование System::String to float
+- float::Parse(System::String str)
+
+СООБЩЕНИЯ ОБ ОШИБКАХ
+
+MessageBox::Show(this, "Текст сообщения", "Сообщение", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+
